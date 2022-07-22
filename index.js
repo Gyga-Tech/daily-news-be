@@ -10,6 +10,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use ('/api/v1', router)
 
+
+// const bodyParser = require (body-parser)
+// const router = require ('./routes')
+
+
+
 app.listen (port, ()=> {
-    console.log(`Daily News Backend listening on port ${port}`)
+    console.log(`Daily New Backend listening on port${port}`)
 })
