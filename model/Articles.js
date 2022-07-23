@@ -3,14 +3,18 @@ const fs = require ('fs')
 module.exports = {
     get: (req, res) => {
       return new Promise((resolve, reject) => {
+    
         // const limit = req.query.limit
-        const {limit=7, page=1 } = req.query
+        const {limit=7, page=1, sortby=`categories_id`, order=`desc`, categories} = req.query
         // const page  = req.query.page
         // console.log (req.query.page)
         const offset = (page - 1) * limit;
-        const sql = `SELECT * FROM articles LEFT JOIN categories on articles.categories_id = categories.categories_id ORDER BY articles.created_at LIMIT ${limit} OFFSET ${offset}`;
-  
+        const sql = `SELECT * FROM articles LEFT JOIN categories on articles.categories_id = categories.categories_id
+                     ${categories ? `WHERE articles.categories_id = ${categories}` : "" }
+                     ORDER BY articles.${sortby} ${order} LIMIT ${limit} OFFSET ${offset}`
+        // console.log (req.query) 
         db.query(sql, (err, results) => {
+          // console.log (results)
           if (err) {
             console.log(err)
             reject({
@@ -43,10 +47,39 @@ module.exports = {
                 });
               }
             })
-          }
+              }
         });
       });
     },
+
+    getByID : function (req,res){
+      return new Promise ((resolve,reject)=>{
+       db.query (`SELECT * FROM articles WHERE article_id = "${req.params.id}"`, (err,results)=>{
+      //  console.log ("get by id ")
+        if(err){
+           reject ({
+        massage : "something wrong",
+        status : 500
+           })
+        }
+        if (!results) {
+           reject ({
+        massage : "article not found",
+        status : 500		    
+            })
+        }
+        resolve ({
+         massage :"success",
+         status: 200,
+         data :results
+    
+          })
+    
+    })
+    
+    })
+    },
+
     add: (req, res) => {
       return new Promise((resolve, reject) => {
         const {

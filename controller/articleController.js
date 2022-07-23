@@ -2,9 +2,18 @@ const Article = require ("../model/Articles");
 
 module.exports = {
     getAllArticle: async (req, res) => {
-      // console.log (req.query)
+      console.log (req.query)
       try {
         const results = await Article.get(req, res);
+        return res.status(200).send(results);
+      } catch (error) {
+        res.send(error);
+      }
+    },
+    getByID: async (req, res) => {
+      console.log (req.query)
+      try {
+        const results = await Article.getByID(req, res);
         res.status(200).send(results);
       } catch (error) {
         res.send(error);
