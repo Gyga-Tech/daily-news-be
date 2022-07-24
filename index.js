@@ -17,6 +17,7 @@ app.get("/", (req,res) =>{
     res.send("api berjalan")
 })
 
+app.use('/public', express.static('uploads'));
 // const bodyParser = require (body-parser)
 // const router = require ('./routes')
 
