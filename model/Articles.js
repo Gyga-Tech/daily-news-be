@@ -13,7 +13,7 @@ module.exports = {
                     title, content, articles.updated_at, articles.created_at
                     FROM articles LEFT JOIN categories on articles.categories_id = categories.categories_id
                      ${categories ? `WHERE categories.categories_id = ${categories}` : "" }
-                     ORDER BY categories.${sortby} ${order} LIMIT ${limit} OFFSET ${offset}`
+                     ORDER BY articles.${sortby} ${order} LIMIT ${limit} OFFSET ${offset}`
         // const sql = "SELECT * FROM articles"  
         // console.log (req.query) 
         db.query(sql, (err, results) => {
