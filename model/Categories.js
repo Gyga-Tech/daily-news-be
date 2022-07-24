@@ -21,8 +21,8 @@ module.exports = {
   },
   add: (req, res) => { // add done
     return new Promise((resolve, reject) => {
-      const { categoryName } = req.body;
-      const sql = `INSERT INTO categories(categories_name) VALUES ('${categories_name}')`;
+      const { categories_name, cover } = req.body;
+      const sql = `INSERT INTO categories(categories_name) VALUES ('${categories_name}', '${cover}')`;
 
       db.query(sql, (err, results) => {
         if (err) {
@@ -42,7 +42,7 @@ module.exports = {
   },
   update: (req, res) => { // update done
     return new Promise((resolve, reject) => {
-      const { categoryID } = req.params;
+      const { categories_id } = req.params;
       db.query(`SELECT * FROM categories WHERE categories_id=${categories_id}`, (err, results) => {
         if (err) {
           res.send({ message: "Something error" });
@@ -53,11 +53,12 @@ module.exports = {
           ...req.body,
         };
         const {
-          categories_name
+          categories_name,
+          cover
         } = previousData;
 
         db.query(
-          `UPDATE categories SET categories_name='${categories_name}' WHERE category_id='${categories_id}'`,
+        `UPDATE categories SET categories_name='${categories_name}', cover='${cover}' WHERE categories_id='${categories_id}'`,
           (err, results) => {
             if (err) {
               console.log(err);
@@ -75,7 +76,7 @@ module.exports = {
   },
   remove: (req, res) => { // delete done
     return new Promise((resolve, reject) => {
-      const { categoryID } = req.params;
+      const { categories_id } = req.params;
       db.query(`DELETE FROM categories WHERE categories_id=${categories_id}`, (err, results) => {
         if (err) {
           reject({ message: "Something wrong" });
