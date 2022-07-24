@@ -18,6 +18,6 @@ app.get("/", (req,res) =>{
 // const router = require ('./routes')
 
 
-app.listen (port, ()=> {
+app.listen (process.env.PORT || port, ()=> {
     console.log(`Daily New Backend listening on port${port}`)
 })
