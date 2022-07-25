@@ -42,9 +42,10 @@ module.exports = {
   add: (req, res) => { // add done
     return new Promise((resolve, reject) => {
       const { categories_name, cover } = req.body;
-      const sql = `INSERT INTO categories(categories_name) VALUES ('${categories_name}', '${cover}')`;
-
+      const sql = `INSERT INTO categories(categories_name, cover) VALUES ('${categories_name}', '${cover}')`;
+      
       db.query(sql, (err, results) => {
+        console.log(results, "TEST")
         if (err) {
           console.log(err);
           reject({ message: "Something error" });
