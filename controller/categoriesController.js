@@ -9,6 +9,14 @@ module.exports = {
       res.send(error);
     }
   },
+  getCategoriesId: async (req, res) => {
+    try {
+      const results = await Categories.getId(req, res);
+      res.status(200).send(results);
+    } catch (error) {
+      res.send(error);
+    }
+  },
   addNewCategories: async (req, res) => {
     try {
       const results = await Categories.add(req, res);

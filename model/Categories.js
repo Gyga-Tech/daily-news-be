@@ -19,6 +19,26 @@ module.exports = {
       });
     });
   },
+  getId: (req, res) => { // get done
+    return new Promise((resolve, reject) => {
+        const {categories_id} = req.params;
+        console.log(categories_id)
+      const sql = `SELECT * FROM categories WHERE categories_id =${categories_id}`;
+      db.query(sql, (err, results) => {
+        if (err) {
+          console.log(err)
+          reject({
+            message: "Something wrong",
+          });
+        }
+        resolve({
+          message: "Get all from categories success",
+          status: 200,
+          data: results,
+        });
+      });
+    });
+  },
   add: (req, res) => { // add done
     return new Promise((resolve, reject) => {
       const { categoryName } = req.body;
