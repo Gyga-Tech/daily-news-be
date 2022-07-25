@@ -86,8 +86,8 @@ npm start
 
 ## Contributors
 
-- Fullstack [Dhani Setiaji (PM)](https://github.com/dhanisetiaji)
-- BackEnd [Ahmad Wahyudi](https://github.com/ahmadvvahyudi)
-- BackEnd [Dio Fitriadi](https://github.com/diofitriadi)
-- BackEnd [Noviana R](https://github.com/Novianaa)
-- FrontEnd [Sangkan Faiq](https://github.com/sangkanfaiq)AA
+- Fullstack [Trevin Kurnia Ramadhan](https://github.com/trevinkur)
+- Backend [Gyga Maulana (PM)](https://github.com/GygaMaulana)
+- Frontend [Santi Purwaningsih](https://github.com/santipn)
+- Frontend [Muhammad Zainul Mubarok](https://github.com/zainulmbrk)
+- FrontEnd [MUHAMAD LUKMAN HAKIM](https://github.com/hlukman86)
