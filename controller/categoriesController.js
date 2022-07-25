@@ -27,12 +27,21 @@ module.exports = {
   },
   updateCategories: async (req, res) => {
     try {
-      const results = await Categories.update(req, res);
-      res.status(201).send(results);
-    } catch (error) {
-      res.status(400).send(error);
-    }
-  },
+      let reqModifier = {
+         ...req,
+     }
+     if (req.file) {
+         reqModifier = {
+             ...req,
+             body: { ...req.body, cover: req.file.filename }
+         }
+     }
+     const results = await Categories.update(reqModifier, res);
+     res.status(201).send(results);
+   } catch (error) {
+     res.status(400).send(error);
+   }
+ },
   deleteCategories: async (req, res) => {
     try {
       const results = await Categories.remove(req, res);
