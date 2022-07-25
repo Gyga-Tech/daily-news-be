@@ -90,4 +90,4 @@ npm start
 - BackEnd [Ahmad Wahyudi](https://github.com/ahmadvvahyudi)
 - BackEnd [Dio Fitriadi](https://github.com/diofitriadi)
 - BackEnd [Noviana R](https://github.com/Novianaa)
-- FrontEnd [Sangkan Faiq](https://github.com/sangkanfaiq)
+- FrontEnd [Sangkan Faiq](https://github.com/sangkanfaiq)AA
