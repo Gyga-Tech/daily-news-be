@@ -6,7 +6,7 @@ const categoriesRoute = require('./categoriesRoute')
 // const locationRoute = require('./locationRoute')
 // const cinemaRoute = require('./cinemaRoute')
 // const bookingRoute = require('./bookingRoute')
-// const authRoute = require('./authRoute')
+const authRoute = require('./authRoute')
 
 
 
@@ -17,7 +17,7 @@ app.use('/categories', categoriesRoute)
 // app.use('/location', locationRoute)
 // app.use('/cinema', cinemaRoute)
 // app.use('/booking', bookingRoute)
-// app.use('/auth', authRoute)
+app.use('/auth', authRoute)
 
 
 
