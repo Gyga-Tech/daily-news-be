@@ -10,8 +10,10 @@ module.exports = {
         // console.log (req.query.page)
         const offset = (page - 1) * limit;
         const sql = `SELECT article_id, categories.categories_id, categories.categories_name, articles.cover,
-                    title, content, articles.updated_at, articles.created_at
-                    FROM articles LEFT JOIN categories on articles.categories_id = categories.categories_id
+                    title, content, articles.updated_at, articles.created_at, users.name
+                    FROM articles 
+                    JOIN categories on articles.categories_id = categories.categories_id
+                    JOIN users on articles.userID = users.userID
                      ${categories ? `WHERE categories.categories_id = ${categories}` : "" }
                      ORDER BY articles.${sortby} ${order} LIMIT ${limit} OFFSET ${offset}`
         // const sql = "SELECT * FROM articles"  
