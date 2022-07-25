@@ -92,10 +92,11 @@ module.exports = {
           categories_id,
           content,
           cover,
+          userID
         } = req.body;
         console.log (req.body)
         db.query(
-          `INSERT INTO articles (title, categories_id, content, cover) VALUES('${title}', '${categories_id}', '${content}', '${cover}')`,
+          `INSERT INTO articles (title, categories_id, content, cover, userID) VALUES('${title}', '${categories_id}', '${content}', '${cover}', ${userID})`,
           (err, results) => {
             if (err) {
               console.log(err);
