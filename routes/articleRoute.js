@@ -9,7 +9,7 @@ router.get('/', getAllArticle)
 router.get('/:id', getByID)
 router.post('/', verifyAuth, upload , addNewArticle)
 router.patch('/:article_id',verifyAuth, upload, updateArticle)
-router.delete('/:article_id', deleteArticle)
+router.delete('/:article_id', verifyAuth, deleteArticle)
 
 
 
