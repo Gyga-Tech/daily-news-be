@@ -29,7 +29,8 @@ some technology used in this project.
 - [Express](https://expressjs.com)
 - [JWT](https://jwt.io)
 - [MySQL](https://mysql.com)
-
+- [Bycript](https://www.npmjs.com/package/bcrypt)
+- [Cors](https://www.npmjs.com/package/cors)
 
 <!-- GETTING STARTED -->
 
