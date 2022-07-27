@@ -1,4 +1,5 @@
 const db = require("../helper/db_connection");
+const fs = require("fs")
 
 module.exports = {
   get: (req, res) => { // get done
@@ -98,16 +99,39 @@ module.exports = {
   remove: (req, res) => { // delete done
     return new Promise((resolve, reject) => {
       const { categories_id } = req.params;
-      db.query(`DELETE FROM categories WHERE categories_id=${categories_id}`, (err, results) => {
-        if (err) {
-          reject({ message: "Something wrong" });
+      db.query(`SELECT * from categories WHERE categories_id=${categories_id}`, (err,results) => {
+        
+        if(!results) {
+          reject({ 
+            message: "Server Error",
+            status: 500,
+          }
+          )
         }
-        resolve({
-          message: "Delete categories success",
-          status: 200,
-          data: results,
-        });
-      });
+        if(results?.length === 0) {
+          reject(
+            { message: "data not found",
+              status: 400,
+              data: []
+          });
+        } else {
+          const tempImg = results[0].cover
+          db.query(`DELETE FROM categories WHERE categories_id=${categories_id}`, (err, results) => {
+            
+            if (err) {
+              reject({ message: "Something wrong" });
+            }
+            fs.unlink(`uploads/${tempImg}`, (err,results) => {})
+            resolve({
+              message: "Delete categories success",
+              status: 200,
+              data: results,
+            });
+          });
+        }
+
+      })
+      
     });
   },
 };
