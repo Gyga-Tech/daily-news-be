@@ -19,7 +19,16 @@ module.exports = {
   },
   addNewCategories: async (req, res) => {
     try {
-      const results = await Categories.add(req, res);
+      let reqModifier = {
+        ...req,
+    }
+    if (req.file) {
+      reqModifier = {
+          ...req,
+          body: { ...req.body, cover: req.file.filename }
+      }
+  }
+      const results = await Categories.add(reqModifier, res);
       res.status(201).send(results);
     } catch (error) {
       res.status(400).send(error);

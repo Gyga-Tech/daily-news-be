@@ -11,6 +11,7 @@ module.exports = {
     },
     register: async (req, res)=> {
         try {
+            console.log("halo")
             const results = await Auth.register(req, res)
             return res.status(200).send(results)
         } catch (error) {

@@ -45,7 +45,7 @@ module.exports = {
     });
   },
   register: (req, res) => {
-    const { email, password, phoneNumber, image} = req.body;
+    const { email, password, phoneNumber, username, name} = req.body;
     return new Promise((resolve, reject) => {
       // if(req.body.role) {
       //   resolve({
@@ -58,8 +58,8 @@ module.exports = {
           reject({ message: "ada erradadawar" });
         } else {
           db.query(
-            `INSERT INTO users(email, password, phoneNumber, image) VALUES( 
-            '${email}','${password}','${phoneNumber}','${image}')`,
+            `INSERT INTO users(email, password, phoneNumber, username, name) VALUES( 
+            '${email}','${password}','${phoneNumber}', '${username}', '${name}')`,
             (err, results) => {
               if (err) {
                 console.log(err)
