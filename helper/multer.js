@@ -22,7 +22,7 @@ const fileFilter = (req, file, cb) => {
   }
  
   const limits = {
-    fileSize: 1 * 1024 * 1024
+    fileSize: 1 * 8024 * 8024
   }
   
   const uploadArticle = multer({
