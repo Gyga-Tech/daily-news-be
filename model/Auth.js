@@ -63,7 +63,7 @@ module.exports = {
             (err, results) => {
               if (err) {
 
-                if(err.code === 'ER_DUP_ENRTY') {
+                if(err.code === 'ER_DUP_ENTRY') {
                   reject({
                     message: 'Maaf Email sudah ada',
                     status: 400,
