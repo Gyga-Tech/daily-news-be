@@ -33,7 +33,8 @@ module.exports = {
                     status: 200,
                     data: {
                       token,
-                      user_id: results[0].userID
+                      user_id: results[0].userID,
+                      role: results[0].role
                     },
                   });
                 }else {reject({message: "Email/Password Salah."})}
