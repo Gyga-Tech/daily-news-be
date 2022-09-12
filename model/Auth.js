@@ -62,6 +62,14 @@ module.exports = {
             '${email}','${password}','${phoneNumber}', '${username}', '${name}')`,
             (err, results) => {
               if (err) {
+
+                if(err.code === 'ER_DUP_ENRTY') {
+                  reject({
+                    message: 'Maaf Email sudah ada',
+                    status: 400,
+                    detail: err
+                  });  
+                }
                 reject({
                   message: 'Ada Error',
                   status: 500,
