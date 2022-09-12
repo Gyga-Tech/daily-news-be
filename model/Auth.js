@@ -55,15 +55,18 @@ module.exports = {
       bcrypt.hash(password, 10, function (err, password) {
         if (err) {
           console.log(err)
-          reject({ message: "ada erradadawar" });
+          reject({ message: "ada error" });
         } else {
           db.query(
             `INSERT INTO users(email, password, phoneNumber, username, name) VALUES( 
             '${email}','${password}','${phoneNumber}', '${username}', '${name}')`,
             (err, results) => {
               if (err) {
-                console.log(err)
-                reject(useError(err.code));
+                reject({
+                  message: 'Ada Error',
+                  status: 500,
+                  detail: err
+                });
               }
               resolve({
                 message: "register success",
