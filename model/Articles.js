@@ -5,32 +5,30 @@ module.exports = {
       return new Promise((resolve, reject) => {
     
         // const limit = req.query.limit
-        const {limit=7, page=1, sortby=`categories_id`, order=`desc`, categories} = req.query
-        // const page  = req.query.page
-        // console.log (req.query.page)
+        const {limit=7, page=1, sortby=`categories_id`, order=`desc`, categories, search} = req.query
         const offset = (page - 1) * limit;
         const sql = `SELECT article_id, categories.categories_id, categories.categories_name, articles.cover,
                     title, content, articles.updated_at, articles.created_at, users.name
                     FROM articles 
                     JOIN categories on articles.categories_id = categories.categories_id
                     JOIN users on articles.userID = users.userID
-                     ${categories ? `WHERE categories.categories_id = ${categories}` : "" }
-                     ORDER BY articles.${sortby} ${order} LIMIT ${limit} OFFSET ${offset}`
-        // const sql = "SELECT * FROM articles"  
-        // console.log (req.query) 
+                    ${search ? `WHERE articles.title LIKE "%${search}%"` : ''}
+                    ${categories ? `WHERE categories.categories_id = ${categories}` : "" }
+                    ORDER BY articles.${sortby} ${order} LIMIT ${limit} OFFSET ${offset}`
         db.query(sql, (err, results) => {
-          // console.log (results)
           if (err) {
-            console.log(err)
             reject({
               message: "Something wrong",
+              status: 500,
+              detail: err
             });
           } else {
             db.query(`SELECT article_id from articles`, (err, result) => {
               if(err) {
                 console.log(err)
                 reject({
-                  message: "Something wrong"
+                  message: "Something wrong",
+                  status: 500
                 })
               } else {
                 totalPage = Math.ceil(result.length/limit)

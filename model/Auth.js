@@ -27,7 +27,6 @@ module.exports = {
                 if(successHashing) 
                   {const token = 
                       jwt.sign({ user_id: results[0].userID, role : results[0].role}, process.env.JWT_SECRET_KEY, {expiresIn: '1 day' });
-                  // console.log(process.env.JWT_SECRET_KEY)
                   resolve({
                     message: "login success",
                     status: 200,

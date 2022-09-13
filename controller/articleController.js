@@ -7,7 +7,7 @@ module.exports = {
         const results = await Article.get(req, res);
         return res.status(200).send(results);
       } catch (error) {
-        res.send(error);
+        return res.status(error ? error.status ? error.status : 500 : 500).send(error);
       }
     },
     getByID: async (req, res) => {
@@ -16,7 +16,7 @@ module.exports = {
         const results = await Article.getByID(req, res);
         res.status(200).send(results);
       } catch (error) {
-        res.send(error);
+        return res.status(error ? error.status ? error.status : 500 : 500).send(error);        
       }
     },
     addNewArticle: async (req, res) => {
@@ -29,7 +29,7 @@ module.exports = {
         const results = await Article.add(reqModifier, res);
         res.status(201).send(results);
       } catch (error) {
-        res.status(400).send(error);
+        return res.status(error ? error.status ? error.status : 500 : 500).send(error);        
       }
     },
     updateArticle: async (req, res) => {
@@ -46,7 +46,7 @@ module.exports = {
        const results = await Article.update(reqModifier, res);
        res.status(201).send(results);
      } catch (error) {
-       res.status(400).send(error);
+      return res.status(error ? error.status ? error.status : 500 : 500).send(error);        
      }
    },
     deleteArticle: async (req, res) => {
@@ -54,7 +54,7 @@ module.exports = {
         const results = await Article.remove(req, res);
         res.status(201).send(results);
       } catch (error) {
-        res.status(400).send(error);
+        return res.status(error ? error.status ? error.status : 500 : 500).send(error);        
       }
     },
   };
