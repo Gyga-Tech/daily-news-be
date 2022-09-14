@@ -94,7 +94,7 @@ module.exports = {
         } = req.body;
         console.log (req.body)
         db.query(
-          `INSERT INTO articles (title, categories_id, content, cover, userID) VALUES('${title}', '${categories_id}', '${content}', '${cover}', ${userID})`,
+          `INSERT INTO articles (title, categories_id, content, cover, userID) VALUES("${title}", "${categories_id}", '${content}', '${cover}', ${userID})`,
           (err, results) => {
             if (err) {
               console.log(err);
@@ -104,7 +104,7 @@ module.exports = {
               message: "Add New Article Success",
               status: 200,
               data: {
-                id: results.insertId,
+                id: results?.insertId,
                 ...req.body,
               },
             });

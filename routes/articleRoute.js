@@ -7,7 +7,7 @@ const verifyAuth = require("../helper/verifyAuth")
 
 router.get('/', getAllArticle)
 router.get('/:id', getByID)
-router.post('/', verifyAuth, upload , addNewArticle)
+router.post('/', upload , addNewArticle)
 router.patch('/:article_id',verifyAuth, upload, updateArticle)
 router.delete('/:article_id', verifyAuth, deleteArticle)
 
